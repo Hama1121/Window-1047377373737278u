@@ -1,0 +1,25 @@
+name: Windows - RustDesk
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: windows-latest
+    timeout-minutes: 99999999999999999999999
+    
+    steps:
+      - name: Downloading & Installing Essentials
+        run: |
+          Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/1efn96a0z4roiwpsy8sfn/Downloads.bat?rlkey=lbr6wuradlpqfh79rdk150aqp&dl=0" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
+
+      - name: Log In To AnyDesk
+        run: cmd /c show.bat
+
+      - name: NoTime
+        run: python Notime.py
+        
+             - name: save data
+             - run: python savedata.py
